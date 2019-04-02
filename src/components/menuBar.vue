@@ -1,10 +1,10 @@
 <template>
   <transition  name="info-classes-transition" enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown">
     <div class="book-footer" v-show="showMenu">
-      <i class="icon-list"></i>
-      <i class="icon-sun"></i>
+      <i class="icon-list" @click="$emit('action','catLog');"></i>
+      <i class="icon-uniE902"></i>
       <i class="icon-moon"></i>
-      <i class="icon-cog" @click="$emit('action');"></i>
+      <i class="icon-cog" @click="$emit('action','theme');"></i>
     </div>
   </transition>
 </template>

@@ -8,11 +8,10 @@
         <div class="point-content" v-for="(item,index) in fontList" :key="index">
           <div class="line">
           </div>
-          <div class="point" v-show="defaultSize == item.fontSize">
+          <div class="point" v-show="fontSize == item.fontSize">
 
           </div>
           <div class="line">
-
           </div>
         </div>
       </div>
@@ -20,14 +19,24 @@
         A
       </div>
     </div>
+    <div class="theme-wrap">
+      <ul>
+        <li v-for="(item,index) in themesList" :key="index" @click="$emit('setTheme',item.name);aIndex = index" :class="{'active':curTheme == item.name}" :style="{'background-color':item['style']['background-color']}">
+        </li>
+      </ul>
+    </div>
     </div>
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     "use strict";
     export default {
         name: "themeSetting",
-        props:['showSetting','fontList','defaultSize']
+        props:['showSetting','fontList','themesList'],
+        computed:{
+          ...mapGetters(['fontSize','curTheme'])
+        }
     }
 </script>
 
@@ -40,7 +49,7 @@
     width:100%;
     background-color:#fff;
     box-shadow:0 -8px 8px rgba(0,0,0,.15);
-    height:80px;
+    height:120px;
     .font-wrap{
       width:100%;
       display:flex;
@@ -85,6 +94,24 @@
         text-align:center;
       }
     }
+
+    .theme-wrap{
+      ul{
+        display:flex;
+        width:100%;
+        li{
+          flex:1;
+          height:30px;
+          border-radius:5px;
+          margin:10px;
+          &.active{
+            border:1px solid red;
+          }
+        }
+      }
+
+    }
+
   }
 
 </style>
